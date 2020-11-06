@@ -3,18 +3,16 @@ from typing import ItemsView
 import requests
 import base64
 
-s_key = 'xk7ov0my-t9vm-70z6:y491-2uyygexkkq6r' # 
+s_key = 'xk7ov0my-t9vm-70z6:y491-2uyygexkkq6r' # this is a secret key of the test store on Printful
 key = base64.b64encode(bytes(s_key, 'utf-8'))
 keyDecoded = key.decode('ascii')
 header = {'Authorization': 'Basic ' + keyDecoded}
 
 r = requests.get('https://api.printful.com/sync/products', headers=header)
 
-
 test = r.json()
 
-# print(json.dumps(test, indent=4, sort_keys=True))
-
+print(json.dumps(test, indent=4))
 #print(test)
 
 
