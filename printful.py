@@ -12,11 +12,17 @@ r = requests.get('https://api.printful.com/sync/products', headers=header)
 
 test = r.json()
 
-print(json.dumps(test, indent=4))
-#print(test)
+# print(json.dumps(test, indent=4))
 
 
 id = [n for i in test["result"] for k, n in i.items() if k == "id"]
+name = ([n for i in test["result"] for k, n in i.items() if k == "name"])
+
+id_name = dict(zip(name, id ))
+id_name_list = list(id_name.items()) 
+
+# print(json.dumps(id_name, indent=2))
+print(json.dumps(id_name_list, indent=2))
 
 product_1 = id[0]
 url_product1 = f'https://api.printful.com/store/products/{product_1}'
@@ -29,7 +35,9 @@ product_1_details = r.json()
 
 variant_name = [n for i in product_1_details['result']['sync_variants'] for k, n in i.items() if k == "product"]
 
-print(json.dumps(variant_name, indent=2))
+print(id_name_list[0], json.dumps(variant_name, indent=2))
+
+
 
 # y = json.loads(variant_name)
 # print(y["name"])
