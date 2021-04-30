@@ -19,7 +19,7 @@ id = [n for i in test["result"] for k, n in i.items() if k == "id"]
 name = ([n for i in test["result"] for k, n in i.items() if k == "name"])
 
 id_name = dict(zip(name, id ))
-id_name_list = list(id_name.items()) 
+id_name_list = list(id_name.items())
 
 # print(json.dumps(id_name, indent=2))
 print(json.dumps(id_name_list, indent=2))
@@ -31,12 +31,11 @@ r = requests.get(url_product1, headers=header)
 product_1_details = r.json()
 
 
-#variant_name = product_1_details['result']['sync_variants']
+# variant_name = product_1_details['result']['sync_variants']
 
 variant_name = [n for i in product_1_details['result']['sync_variants'] for k, n in i.items() if k == "product"]
 
 print(id_name_list[0], json.dumps(variant_name, indent=2))
-
 
 
 # y = json.loads(variant_name)
